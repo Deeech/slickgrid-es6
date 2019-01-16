@@ -1005,6 +1005,11 @@ function SlickGrid(container, data, columns, options){
     if (!stylesheet){
       var sheets = document.styleSheets;
       for (var i = 0; i < sheets.length; i++){
+        // If we have only one stylesheet we might be inside a test environment.
+        if (sheets.length === 1) {
+          stylesheet = sheets[i];
+          break;
+        }
         if ((sheets[i].ownerNode || sheets[i].owningElement) == $style[0]){
           stylesheet = sheets[i];
           break;
